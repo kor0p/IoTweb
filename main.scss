@@ -1,0 +1,157 @@
+$golden:goldenrod;
+$white:white;
+body {
+    padding: 0;
+    margin: 0;
+    background-color: $golden;
+}
+
+ul {
+    text-decoration: none !important;
+    overflow-wrap: break-word;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    //padding: 0% 0% 0% 10% !important;
+    overflow: hidden;
+    background-color: $golden;
+    height: 100px;
+    li {
+        width: 15%; //16.666666%;
+        align-content: center;
+        float: left;
+        p {
+            display: block;
+            font-weight: bold;
+            text-align: center;
+            padding: 7px 8px;
+            margin: 1rem 0;
+            font-size: 1.45em;
+        }
+        a {
+            color: $white;
+            padding: 7px 8px;
+            text-decoration: none !important;
+        }
+        &:not(.active) p:hover a {
+            background-color: $white;
+            color: $golden;
+            transition: all 0.5s ease;
+        }
+        &.active {
+            p {
+                margin: 1rem 25%;
+                background-color: $white;
+                a {
+                    color: $golden;
+                }
+            }
+            &:hover p {
+                background-color: wheat;
+                transition: all 0.5s ease;
+            }
+            &:hover~#logo {
+                opacity: 0;
+                transition: all 1s ease;
+            }
+        }
+        ul {
+            margin-right: 45%;
+            margin-top: -1.06%;
+            /* visibility: hidden;
+            opacity: 0; */
+            display: none;
+            padding: 0;
+            li p {
+                margin: 5% 5% 5% 5%;
+            }
+        }
+        &.dropdown p a {
+            pointer-events: none;
+        }
+        // &.dropdown:hover ul,
+        // ul:hover {
+        //     position: absolute;
+        //     /* visibility: visible;
+        //     opacity: 1; */
+        //     display: block;
+        //     transition: all 5s ease;
+        // }
+    }
+}
+
+
+/*ul li.active:hover ul li ul li {
+    width: 100%;
+}*/
+
+header {
+    background-image: url("images/band.jpg");
+    background-position: top;
+    background-size: cover;
+    height: 300px;
+    width: 100%;
+    z-index: 0;
+}
+
+.about-band {
+    background-color: $golden;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    p {
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+}
+
+.best-album {
+    background-color: rgb(88, 0, 0);
+    padding-top: 600px;
+    padding-bottom: 50px;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-size: 18px;
+    color: $white;
+    div {
+        float: left;
+        margin-top: -550px;
+        margin-left: -25%;
+        h1 {
+            margin-top: 100px;
+            right: 50%;
+        }
+        h2 {
+            padding-left: 37.3%;
+            padding-right: 37.3%;
+            a {
+                margin-left: 10%;
+            }
+        }
+    }
+    img {
+        float: right;
+        margin-top: -575px;
+        width: 614px;
+        max-width: 24%;
+        /* width: 150%;
+    height: auto;*/
+    }
+}
+
+footer {
+    padding-top: 25px;
+    padding-bottom: 35px;
+    height: 1.4rem;
+    background-color: rgb(144, 0, 0)!important;
+    &,
+    & p a {
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        color: $white;
+    }
+}

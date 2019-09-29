@@ -1,173 +1,164 @@
 body {
-    padding: 0;
-    margin: 0;
-    background-color: goldenrod;
-}
-
-#logo {
-    padding: 14px 16px;
+  padding: 0;
+  margin: 0;
+  background-color: goldenrod;
 }
 
 ul {
-    overflow-wrap: break-word;
-    list-style-type: none;
-    margin: 0;
-    padding: 0% 0% 0% 10%;
-    overflow: hidden;
-    background-color: goldenrod;
+  text-decoration: none !important;
+  overflow-wrap: break-word;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: goldenrod;
+  height: 100px;
 }
 
-li {
-    width: 16.666666%;
-    align-content: center;
-    float: left;
+ul li {
+  width: 15%;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  float: left;
 }
 
-li p {
-    text-decoration: none;
-    display: block;
-    font-weight: bold;
-    text-align: center;
-    padding: 7px 8px;
-    margin: 1rem 0;
-    font-size: 1.45em;
+ul li p {
+  display: block;
+  font-weight: bold;
+  text-align: center;
+  padding: 7px 8px;
+  margin: 1rem 0;
+  font-size: 1.45em;
 }
 
-li a {
-    text-decoration: none;
-    color: white;
-    padding: 7px 8px;
+ul li a {
+  color: white;
+  padding: 7px 8px;
+  text-decoration: none !important;
 }
 
-li p:not(.active) a:hover {
-    background-color: white;
-    color: goldenrod;
+ul li:not(.active) p:hover a {
+  background-color: white;
+  color: goldenrod;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
-li p.active {
-    margin: 1rem 25%;
-    background-color: white;
+ul li.active p {
+  margin: 1rem 25%;
+  background-color: white;
 }
 
-li p.active a {
-    color: goldenrod;
+ul li.active p a {
+  color: goldenrod;
 }
 
-li p.active:hover {
-    background-color: wheat;
+ul li.active:hover p {
+  background-color: wheat;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
-
-/* li p a.active {
-    background-color: wheat;
+ul li.active:hover ~ #logo {
+  opacity: 0;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
 }
-
-li p a.active:hover {
-    color: black;
-} */
 
 ul li ul {
-    margin-right: 45%;
-    visibility: hidden;
-    opacity: 0;
-    display: none;
-    /* padding: 0% 2.5% 0% 2.5%; */
-    padding: 0;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-ul li:hover>ul,
-ul li ul:hover {
-    position: absolute;
-    visibility: visible;
-    opacity: 1;
-    display: block;
-}
-
-ul li:hover>ul {
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
-}
-
-ul li ul li {
-    /* margin-left: -20%; */
-    width: 100%;
+  margin-right: 45%;
+  margin-top: -1.06%;
+  /* visibility: hidden;
+            opacity: 0; */
+  display: none;
+  padding: 0;
 }
 
 ul li ul li p {
-    margin: 5% 5% 5% 5%;
+  margin: 5% 5% 5% 5%;
 }
 
-header {
-    background-image: url("images/band.jpg");
-    background-position: top;
-    background-size: cover;
-    /* background-position-y: 25%; */
-    height: 300px;
+ul li.dropdown p a {
+  pointer-events: none;
+}
+
+/*ul li.active:hover ul li ul li {
     width: 100%;
-    z-index: 0;
+}*/
+header {
+  background-image: url("images/band.jpg");
+  background-position: top;
+  background-size: cover;
+  height: 300px;
+  width: 100%;
+  z-index: 0;
 }
 
 .about-band {
-    background-color: goldenrod;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    width: 100%;
-    text-align: center;
-    font-size: 24px;
+  background-color: goldenrod;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
 }
 
 .about-band p {
-    padding-left: 15%;
-    padding-right: 15%;
+  padding-left: 15%;
+  padding-right: 15%;
 }
 
 .best-album {
-    background-color: rgb(88, 0, 0);
-    padding-top: 600px;
-    padding-bottom: 50px;
-    width: 100%;
-    height: auto;
-    text-align: center;
-    font-size: 18px;
-    color: white;
+  background-color: #580000;
+  padding-top: 600px;
+  padding-bottom: 50px;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  font-size: 18px;
+  color: white;
 }
 
 .best-album div {
-    float: left;
-    margin-top: -550px;
-    margin-left: 35%;
+  float: left;
+  margin-top: -550px;
+  margin-left: -25%;
+}
+
+.best-album div h1 {
+  margin-top: 100px;
+  right: 50%;
 }
 
 .best-album div h2 {
-    right: 50%;
+  padding-left: 37.3%;
+  padding-right: 37.3%;
+}
+
+.best-album div h2 a {
+  margin-left: 10%;
 }
 
 .best-album img {
-    float: right;
-    margin-top: -575px;
-    width: 614px;
-    max-width: 24%;
-    /* width: 150%;
+  float: right;
+  margin-top: -575px;
+  width: 614px;
+  max-width: 24%;
+  /* width: 150%;
     height: auto;*/
+}
+
+footer {
+  padding-top: 25px;
+  padding-bottom: 35px;
+  height: 1.4rem;
+  background-color: #900000 !important;
 }
 
 footer,
 footer p a {
-    width: 100%;
-    text-align: center;
-    font-size: 18px;
-    background-color: rgb(144, 0, 0)!important;
-    color: white;
-}
-
-footer {
-    padding-top: 25px;
-    padding-bottom: 35px;
-    height: 1.4rem;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  color: white;
 }

@@ -3,32 +3,44 @@
 
 <head>
     <title>Pikkardiyska tertsia — Home</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
     <nav>
-        <img alt="logo" id="logo" src="images/logo.png" width="10%" style="position:absolute; padding: 0.5% 5.5% 5.5% 0.5%;">
-        <ul>
-            <li>
-                <p class="active"><a href="index.html">Main</a></p>
+        <ul class="nav">
+            <img alt="logo" id="logo" src="images/logo.png" style="padding: 0.5%; height: 100%; width: auto;">
+
+            <li class="active">
+                <p><a href="index.html">Main</a></p>
             </li>
             <li>
                 <p><a href="news.html">News</a></p>
             </li>
-            <li>
-                <p><a>For Fans</a></p>
-                <ul>
-                    <li>
-                        <p><a href="#fanClub">Fan Club</a></p>
-                    </li>
-                    <li>
-                        <p><a href="#tourSchedule">Tour schedule</a></p>
-                    </li>
-                    <li>
-                        <p><a href="#lyrics">Lyrics</a></p>
-                    </li>
-                </ul>
+            <li class="dropdown">
+                <div>
+                    <p><a href="#">For Fans</a></p>
+                </div>
+                <div class="dropdown-menu">
+                    <ul>
+                        <li>
+                            <p><a href="#fanClub">Fan Club</a></p>
+                        </li>
+                        <li>
+                            <p><a href="#tourSchedule">Tour schedule</a></p>
+                        </li>
+                        <li>
+                            <p><a href="#lyrics">Lyrics</a></p>
+                        </li>
+                    </ul>
+                </div>
             </li>
             <li>
                 <p><a href="#fansAppeal">Fans appeal</a></p>
@@ -42,27 +54,37 @@
         </ul>
     </nav>
     <header></header>
-    <div class="about-band">
-        <h2>About band</h2>
-        <p>Pikkardiyska Tertsiya is a unique collective for Ukrainian musical culture. During his rapid singing career, this male band has rightfully won the title of "music legend of Ukraine" and its members have become recognized as "meters of acapella
-            singing". Since 1992, the year of its foundation, "Tertius" has released fourteen genre albums and collections. Composition of the formation: Vladimir Yakimets, Yaroslav Nudyk, Bogdan Bogach, Andriy Kapral, Andriy Shaval and Roman Turyanin.
-            The Pikkardiyska Tertsiya repertoire contains more than 300 songs in a variety of musical styles: pop, rock, classic, folk, jazz, country, spiritual music, rock and roll, blues… 95 percent of this is the Ukrainian-language repertoire. Although
-            in general there are songs in 12 (!) Languages ​​in the song act of the sextet. Equally impressive is the geography of the formation's formations: Poland, Germany, Spain, Italy, France, Canada, the United States, Belgium, Switzerland and even
-            Singapore. In 2008, the formation was awarded the National Prize of Ukraine. T. Shevchenko.</p>
-    </div>
-
-    <div class="best-album">
-        <div>
-            <h2>Best album</h2>
+    <content>
+        <div class="about-band">
+            <h2>About band</h2>
+            <p>Pikkardiyska Tertsiya is a unique collective for Ukrainian musical culture. During his rapid singing career, this male band has rightfully won the title of "music legend of Ukraine" and its members have become recognized as "meters of acapella
+                singing". Since 1992, the year of its foundation, "Tertius" has released fourteen genre albums and collections. Composition of the formation: Vladimir Yakimets, Yaroslav Nudyk, Bogdan Bogach, Andriy Kapral, Andriy Shaval and Roman Turyanin.
+                The Pikkardiyska Tertsiya repertoire contains more than 300 songs in a variety of musical styles: pop, rock, classic, folk, jazz, country, spiritual music, rock and roll, blues… 95 percent of this is the Ukrainian-language repertoire.
+                Although in general there are songs in 12 (!) Languages ​​in the song act of the sextet. Equally impressive is the geography of the formation's formations: Poland, Germany, Spain, Italy, France, Canada, the United States, Belgium, Switzerland
+                and even Singapore. In 2008, the formation was awarded the National Prize of Ukraine. T. Shevchenko.</p>
         </div>
-        <img alt="ad libitum album" src="images/ad_libitum.jpg">
-    </div>
 
+        <div class="best-album">
+            <div>
+                <h1>Best album</h1>
+                <h2><a>Genre: Pop, Folk, World, & Country<br>Style: Vocal</a><a>Year: 1995</a><br><br>Songs: The pond fell asleep, Lorelei, Yar Fog, Before the Image of Christ, Antiphon-1, Hermit, Side B, Zum Sanctus, Hutsulia. Shadows of Forgotten Ancestors,
+                    Valentine's Day, Liralaskmise Laul, The Man I Love, The Song of Naples, Old Tram</h2>
+            </div>
+            <img alt="ad libitum album" src="images/ad_libitum.jpg">
+
+        </div>
+    </content>
     <footer>
         <p><img alt="telegram logo" src="images/telegram.png" width="18px" height="18px" style="margin-bottom: -2px"> Powered by
             <a href="https://t.me/kor0p">Victor Koropetskyi</a>
         </p>
     </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
