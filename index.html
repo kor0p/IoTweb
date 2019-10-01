@@ -14,45 +14,44 @@
 </head>
 
 <body>
-    <nav>
-        <ul class="nav">
-            <img alt="logo" id="logo" src="images/logo.png" style="padding: 0.5%; height: 100%; width: auto;">
+    <nav class="navbar navbar-light navbar-expand-lg justify-content-center sticky-top">
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+            <span class="navbar-toggler-icon sticky-top"></span>
+        </button>
+        <div class="navbar-collapse collapse" id="collapsingNavbar">
 
-            <li class="active">
-                <p><a href="index.html">Main</a></p>
-            </li>
-            <li>
-                <p><a href="news.html">News</a></p>
-            </li>
-            <li class="dropdown">
-                <div>
-                    <p><a href="#">For Fans</a></p>
-                </div>
-                <div class="dropdown-menu">
-                    <ul>
-                        <li>
-                            <p><a href="#fanClub">Fan Club</a></p>
-                        </li>
-                        <li>
-                            <p><a href="#tourSchedule">Tour schedule</a></p>
-                        </li>
-                        <li>
-                            <p><a href="#lyrics">Lyrics</a></p>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li>
-                <p><a href="#fansAppeal">Fans appeal</a></p>
-            </li>
-            <li>
-                <p><a href="#contentVenue">Content venue</a></p>
-            </li>
-            <li>
-                <p><a href="#admin">Admin</a></p>
-            </li>
-        </ul>
+            <img alt="logo" id="logo" src="images/logo.png">
+
+            <ul class="nav navbar-nav mr-auto mt-2 mt-lg-0">
+
+                <li class="active">
+                    <p><a href="index.html">Main</a></p>
+                </li>
+                <li>
+                    <p><a href="news.html">News</a></p>
+                </li>
+                <li class="dropdown">
+                    <p data-toggle="dropdown" data-target=".menu"><a href="#">For Fans</a></p>
+                    <div class="menu">
+                        <p><a href="#fanClub">Fan Club</a></p>
+                        <p><a href="#tourSchedule">Tour schedule</a></p>
+                        <p><a href="#lyrics">Lyrics</a></p>
+                    </div>
+                </li>
+                <li>
+                    <p><a href="#fansAppeal">Fans appeal</a></p>
+                </li>
+                <li>
+                    <p><a href="#contentVenue">Content venue</a></p>
+                </li>
+                <li>
+                    <p><a href="#admin">Admin</a></p>
+                </li>
+            </ul>
+        </div>
     </nav>
+    <!-- <nav class="navbar navbar-expand justify-content-center" style="height: 116px"></nav> -->
     <header></header>
     <content>
         <div class="about-band">

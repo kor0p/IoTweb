@@ -1,17 +1,19 @@
 #news-list {
   padding-left: 7.666%;
   padding-right: 10%;
-  min-height: 1300px;
+  min-height: 1700px;
   background-color: #580000;
   color: white;
+  display: inline-block;
 }
 
 #news-list #news {
   float: left;
   padding-top: 50px;
   padding-left: 2.333%;
+  min-width: 425px;
   width: 30%;
-  min-height: 100%;
+  min-height: 700px;
   text-align: center;
 }
 

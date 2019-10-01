@@ -6,84 +6,124 @@ body {
     background-color: $golden;
 }
 
-ul {
-    text-decoration: none !important;
-    overflow-wrap: break-word;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    //padding: 0% 0% 0% 10% !important;
-    overflow: hidden;
-    background-color: $golden;
-    height: 100px;
-    li {
-        width: 15%; //16.666666%;
-        align-content: center;
-        float: left;
-        p {
-            display: block;
-            font-weight: bold;
-            text-align: center;
-            padding: 7px 8px;
-            margin: 1rem 0;
-            font-size: 1.45em;
+nav {
+    .navbar-toggler {
+        width: 100%;
+        .navbar-toggler-icon {
+            width: 20%;
+            height: 58px;
         }
-        a {
-            color: $white;
-            padding: 7px 8px;
-            text-decoration: none !important;
-        }
-        &:not(.active) p:hover a {
-            background-color: $white;
-            color: $golden;
-            transition: all 0.5s ease;
-        }
-        &.active {
-            p {
-                margin: 1rem 25%;
-                background-color: $white;
-                a {
-                    color: $golden;
-                }
-            }
-            &:hover p {
-                background-color: wheat;
-                transition: all 0.5s ease;
-            }
-            &:hover~#logo {
-                opacity: 0;
-                transition: all 1s ease;
-            }
+    }
+    div {
+        img {
+            position: absolute;
+            width: 5%;
         }
         ul {
-            margin-right: 45%;
-            margin-top: -1.06%;
-            /* visibility: hidden;
-            opacity: 0; */
-            display: none;
+            text-decoration: none !important;
+            align-content: center;
+            overflow-wrap: break-word;
+            list-style-type: none;
+            margin: 0 0 0 5.5%;
             padding: 0;
-            li p {
-                margin: 5% 5% 5% 5%;
+            overflow: hidden;
+            background-color: $golden;
+            width: 100%;
+            li {
+                max-width: 300px;
+                min-width: 16%; //16.666666%;
+                align-content: center;
+                float: left;
+                height: auto;
+                p {
+                    display: block;
+                    font-weight: bold;
+                    text-align: center;
+                    padding: 3px 4px;
+                    margin: 1rem 0rem;
+                    font-size: 1.45em;
+                }
+                a {
+                    color: $white;
+                    padding: 7px 8px;
+                    text-decoration: none !important;
+                }
+                &:not(.active) p:hover a {
+                    background-color: $white;
+                    color: $golden;
+                    transition: all 0.5s ease;
+                }
+                &.active {
+                    p {
+                        //margin: 1rem 25%;
+                        margin: 1rem .5em;
+                        background-color: $white;
+                        a {
+                            color: $golden;
+                        }
+                    }
+                    &:hover p {
+                        background-color: wheat;
+                        transition: all 0.5s ease;
+                    }
+                    &:hover~a #logo {
+                        opacity: 0;
+                        display: none;
+                        transition: all 1s ease;
+                    }
+                }
+                &.dropdown {
+                    position: sticky;
+                    p a {
+                        pointer-events: none;
+                    }
+                    &>div {
+                        max-width: 200px;
+                        min-width: 16%;
+                        //margin-left: 8em;
+                        display: none;
+                        &:hover {
+                            position: fixed !important;
+                            display: block;
+                        }
+                        z-index: 1;
+                        p {
+                            padding-top: 0;
+                            padding-bottom: 0;
+                        }
+                    }
+                    &:hover>div {
+                        display: block;
+                        position: fixed !important;
+                    }
+                }
             }
         }
-        &.dropdown p a {
-            pointer-events: none;
+        &.collapsing,
+        &.show {
+            img {
+                opacity: 0;
+            }
+            ul {
+                margin: 0;
+                li.dropdown {
+                    div {
+                        // background: none;
+                        opacity: 0;
+                        position: fixed !important;
+                        display: none;
+                        &.show {
+                            opacity: 1;
+                            position: relative !important;
+                            display: block;
+                            transition: all 1s ease;
+                        }
+                    }
+                }
+            }
         }
-        // &.dropdown:hover ul,
-        // ul:hover {
-        //     position: absolute;
-        //     /* visibility: visible;
-        //     opacity: 1; */
-        //     display: block;
-        //     transition: all 5s ease;
-        // }
     }
 }
-
-
-/*ul li.active:hover ul li ul li {
-    width: 100%;
-}*/
 
 header {
     background-image: url("images/band.jpg");
@@ -91,7 +131,6 @@ header {
     background-size: cover;
     height: 300px;
     width: 100%;
-    z-index: 0;
 }
 
 .about-band {
@@ -112,10 +151,11 @@ header {
     padding-top: 600px;
     padding-bottom: 50px;
     width: 100%;
-    height: auto;
+    height: 800px;
     text-align: center;
     font-size: 18px;
     color: $white;
+    display: inline-block;
     div {
         float: left;
         margin-top: -550px;
@@ -145,13 +185,13 @@ header {
 footer {
     padding-top: 25px;
     padding-bottom: 35px;
-    height: 1.4rem;
+    height: 2em;
     background-color: rgb(144, 0, 0)!important;
     &,
     & p a {
         width: 100%;
         text-align: center;
-        font-size: 18px;
+        font-size: 16px;
         color: $white;
     }
 }

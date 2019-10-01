@@ -4,94 +4,145 @@ body {
   background-color: goldenrod;
 }
 
-ul {
+nav .navbar-toggler {
+  width: 100%;
+}
+
+nav .navbar-toggler .navbar-toggler-icon {
+  width: 20%;
+  height: 58px;
+}
+
+nav div img {
+  position: absolute;
+  width: 5%;
+}
+
+nav div ul {
   text-decoration: none !important;
+  -ms-flex-line-pack: center;
+      align-content: center;
   overflow-wrap: break-word;
   list-style-type: none;
-  margin: 0;
+  margin: 0 0 0 5.5%;
   padding: 0;
   overflow: hidden;
   background-color: goldenrod;
-  height: 100px;
+  width: 100%;
 }
 
-ul li {
-  width: 15%;
+nav div ul li {
+  max-width: 300px;
+  min-width: 16%;
   -ms-flex-line-pack: center;
       align-content: center;
   float: left;
+  height: auto;
 }
 
-ul li p {
+nav div ul li p {
   display: block;
   font-weight: bold;
   text-align: center;
-  padding: 7px 8px;
-  margin: 1rem 0;
+  padding: 3px 4px;
+  margin: 1rem 0rem;
   font-size: 1.45em;
 }
 
-ul li a {
+nav div ul li a {
   color: white;
   padding: 7px 8px;
   text-decoration: none !important;
 }
 
-ul li:not(.active) p:hover a {
+nav div ul li:not(.active) p:hover a {
   background-color: white;
   color: goldenrod;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
-ul li.active p {
-  margin: 1rem 25%;
+nav div ul li.active p {
+  margin: 1rem .5em;
   background-color: white;
 }
 
-ul li.active p a {
+nav div ul li.active p a {
   color: goldenrod;
 }
 
-ul li.active:hover p {
+nav div ul li.active:hover p {
   background-color: wheat;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
-ul li.active:hover ~ #logo {
+nav div ul li.active:hover ~ a #logo {
   opacity: 0;
+  display: none;
   -webkit-transition: all 1s ease;
   transition: all 1s ease;
 }
 
-ul li ul {
-  margin-right: 45%;
-  margin-top: -1.06%;
-  /* visibility: hidden;
-            opacity: 0; */
-  display: none;
-  padding: 0;
+nav div ul li.dropdown {
+  position: -webkit-sticky;
+  position: sticky;
 }
 
-ul li ul li p {
-  margin: 5% 5% 5% 5%;
-}
-
-ul li.dropdown p a {
+nav div ul li.dropdown p a {
   pointer-events: none;
 }
 
-/*ul li.active:hover ul li ul li {
-    width: 100%;
-}*/
+nav div ul li.dropdown > div {
+  max-width: 200px;
+  min-width: 16%;
+  display: none;
+  z-index: 1;
+}
+
+nav div ul li.dropdown > div:hover {
+  position: fixed !important;
+  display: block;
+}
+
+nav div ul li.dropdown > div p {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+nav div ul li.dropdown:hover > div {
+  display: block;
+  position: fixed !important;
+}
+
+nav div.collapsing img, nav div.show img {
+  opacity: 0;
+}
+
+nav div.collapsing ul, nav div.show ul {
+  margin: 0;
+}
+
+nav div.collapsing ul li.dropdown div, nav div.show ul li.dropdown div {
+  opacity: 0;
+  position: fixed !important;
+  display: none;
+}
+
+nav div.collapsing ul li.dropdown div.show, nav div.show ul li.dropdown div.show {
+  opacity: 1;
+  position: relative !important;
+  display: block;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
 header {
   background-image: url("images/band.jpg");
   background-position: top;
   background-size: cover;
   height: 300px;
   width: 100%;
-  z-index: 0;
 }
 
 .about-band {
@@ -113,10 +164,11 @@ header {
   padding-top: 600px;
   padding-bottom: 50px;
   width: 100%;
-  height: auto;
+  height: 800px;
   text-align: center;
   font-size: 18px;
   color: white;
+  display: inline-block;
 }
 
 .best-album div {
@@ -151,7 +203,7 @@ header {
 footer {
   padding-top: 25px;
   padding-bottom: 35px;
-  height: 1.4rem;
+  height: 2em;
   background-color: #900000 !important;
 }
 
@@ -159,6 +211,6 @@ footer,
 footer p a {
   width: 100%;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   color: white;
 }
