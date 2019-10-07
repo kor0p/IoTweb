@@ -1,0 +1,30 @@
+content {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+content form {
+  background-color: #580000;
+  color: white;
+  padding: 5em 0 5em 0;
+}
+
+content form .row {
+  padding: 0 5em 0 5em;
+  max-height: 800px;
+}
+
+content form .row textarea {
+  height: 200px;
+}
+
+content form .row .hidden {
+  visibility: hidden;
+}
+
+content form .row div,
+content form .row img {
+  max-height: 600px;
+  max-width: 600px;
+}

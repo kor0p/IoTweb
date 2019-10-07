@@ -1,40 +1,31 @@
-#news-list {
-    padding-left: 7.666%;
-    padding-right: 10%;
+content {
+    // padding-left: 5%;
+    // padding-right: 5%;
     min-height: 1700px;
     background-color: rgb(88, 0, 0);
     color: white;
     display: inline-block;
-    #news {
+    .col-sm {
         float: left;
-        padding-top: 50px;
-        padding-left: 2.333%;
-        min-width: 425px;
-        width: 30%;
-        min-height: 700px; // 100%;
+        padding-top: 3rem;
+        // margin-left: calc();
+        min-width: 375px;
+        width: calc(100%/3);
         // max-height: 700px;
         text-align: center;
-        div {
-            height: 70%;
-        }
         h3,
         p {
             padding-left: 8%;
             padding-right: 8%;
         }
         h3 {
-            word-spacing: .2em;
             margin-block-start: 0;
             font-weight: bold;
-            height: 10%;
         }
         p {
             margin: 0;
-            height: 20%;
         }
         img {
-            padding-left: 15%;
-            padding-right: 15%;
             max-height: 350px;
         }
     }

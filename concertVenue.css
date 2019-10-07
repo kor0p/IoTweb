@@ -1,0 +1,29 @@
+content {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+content .container-fluid {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  text-align: center;
+  background-color: #580000;
+  color: white;
+  padding: 5em 0 5em 0;
+  min-height: 800px;
+}
+
+content .container-fluid .row .info {
+  padding-top: 2em;
+}
+
+content .container-fluid .row .info p {
+  font-size: 2em;
+  border: 1px solid red;
+}
+
+content .container-fluid .row button a {
+  color: red;
+}

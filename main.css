@@ -4,28 +4,48 @@ body {
   background-color: goldenrod;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 nav .navbar-toggler {
-  width: 100%;
+  width: 15%;
+  height: 100%;
+  float: left;
+  margin-left: 0;
+  background-color: goldenrod;
 }
 
 nav .navbar-toggler .navbar-toggler-icon {
-  width: 20%;
-  height: 58px;
+  width: 100%;
+}
+
+nav div:not(.show) > ul > li.dropdown > p,
+nav div:not(.show) > ul > li.dropdown > p a {
+  pointer-events: none;
+}
+
+nav div:not(.show).ml-auto {
+  float: right !important;
 }
 
 nav div img {
-  position: absolute;
   width: 5%;
+  max-width: 72px;
+  position: absolute;
+  margin-left: 1%;
+  border-radius: 1rem;
 }
 
 nav div ul {
+  border-radius: 1rem;
   text-decoration: none !important;
   -ms-flex-line-pack: center;
       align-content: center;
   overflow-wrap: break-word;
   list-style-type: none;
-  margin: 0 0 0 5.5%;
-  padding: 0;
+  margin: 0;
+  padding: 0 0 0 6% !important;
   overflow: hidden;
   background-color: goldenrod;
   width: 100%;
@@ -33,7 +53,7 @@ nav div ul {
 
 nav div ul li {
   max-width: 300px;
-  min-width: 16%;
+  min-width: calc(((100%-5rem)*.9)/6);
   -ms-flex-line-pack: center;
       align-content: center;
   float: left;
@@ -62,35 +82,30 @@ nav div ul li:not(.active) p:hover a {
   transition: all 0.5s ease;
 }
 
-nav div ul li.active p {
-  margin: 1rem .5em;
+nav div ul li.active > p {
+  margin: 1rem .25em;
   background-color: white;
 }
 
-nav div ul li.active p a {
+nav div ul li.active > p a {
   color: goldenrod;
 }
 
-nav div ul li.active:hover p {
+nav div ul li.active:hover > p,
+nav div ul li.active p:hover {
   background-color: wheat;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
-nav div ul li.active:hover ~ a #logo {
-  opacity: 0;
-  display: none;
-  -webkit-transition: all 1s ease;
-  transition: all 1s ease;
+nav div ul li.active:hover > p a,
+nav div ul li.active p:hover a {
+  color: goldenrod;
 }
 
 nav div ul li.dropdown {
   position: -webkit-sticky;
   position: sticky;
-}
-
-nav div ul li.dropdown p a {
-  pointer-events: none;
 }
 
 nav div ul li.dropdown > div {
@@ -103,6 +118,8 @@ nav div ul li.dropdown > div {
 nav div ul li.dropdown > div:hover {
   position: fixed !important;
   display: block;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 nav div ul li.dropdown > div p {
@@ -110,9 +127,18 @@ nav div ul li.dropdown > div p {
   padding-bottom: 0;
 }
 
-nav div ul li.dropdown:hover > div {
+nav div ul li.dropdown:hover > div,
+nav div ul li.dropdown.show > div {
   display: block;
   position: fixed !important;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+nav div.collapsing, nav div.show {
+  position: absolute;
+  top: 3rem;
+  left: 0;
 }
 
 nav div.collapsing img, nav div.show img {
@@ -120,7 +146,11 @@ nav div.collapsing img, nav div.show img {
 }
 
 nav div.collapsing ul, nav div.show ul {
-  margin: 0;
+  border-radius: .5rem;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0;
 }
 
 nav div.collapsing ul li.dropdown div, nav div.show ul li.dropdown div {
@@ -131,6 +161,7 @@ nav div.collapsing ul li.dropdown div, nav div.show ul li.dropdown div {
 
 nav div.collapsing ul li.dropdown div.show, nav div.show ul li.dropdown div.show {
   opacity: 1;
+  top: 0;
   position: relative !important;
   display: block;
   -webkit-transition: all 1s ease;
@@ -145,7 +176,12 @@ header {
   width: 100%;
 }
 
-.about-band {
+content {
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+content .about-band {
   background-color: goldenrod;
   padding-top: 100px;
   padding-bottom: 100px;
@@ -154,63 +190,36 @@ header {
   font-size: 24px;
 }
 
-.about-band p {
+content .about-band p {
   padding-left: 15%;
   padding-right: 15%;
 }
 
-.best-album {
+content .best-album {
   background-color: #580000;
-  padding-top: 600px;
+  margin-left: 0;
+  margin-right: 0;
+  padding-top: 50px;
   padding-bottom: 50px;
   width: 100%;
-  height: 800px;
-  text-align: center;
   font-size: 18px;
   color: white;
-  display: inline-block;
 }
 
-.best-album div {
+content .best-album div {
   float: left;
-  margin-top: -550px;
-  margin-left: -25%;
 }
 
-.best-album div h1 {
-  margin-top: 100px;
-  right: 50%;
-}
-
-.best-album div h2 {
-  padding-left: 37.3%;
-  padding-right: 37.3%;
-}
-
-.best-album div h2 a {
+content .best-album div h2 a {
   margin-left: 10%;
 }
 
-.best-album img {
+content .best-album div img {
   float: right;
-  margin-top: -575px;
-  width: 614px;
-  max-width: 24%;
-  /* width: 150%;
-    height: auto;*/
+  width: 100%;
+  min-width: 275px;
 }
 
 footer {
-  padding-top: 25px;
-  padding-bottom: 35px;
-  height: 2em;
   background-color: #900000 !important;
-}
-
-footer,
-footer p a {
-  width: 100%;
-  text-align: center;
-  font-size: 16px;
-  color: white;
 }

@@ -6,32 +6,54 @@ body {
     background-color: $golden;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 nav {
     .navbar-toggler {
-        width: 100%;
+        width: 15%;
+        height: 100%;
+        float: left;
+        margin-left: 0;
+        background-color: $golden;
         .navbar-toggler-icon {
-            width: 20%;
-            height: 58px;
+            width: 100%;
         }
     }
     div {
+        &:not(.show) {
+            &>ul>li.dropdown>p {
+                &,
+                a {
+                    pointer-events: none;
+                }
+            }
+            &.ml-auto {
+                float: right !important;
+            }
+        }
         img {
-            position: absolute;
             width: 5%;
+            max-width: 72px;
+            position: absolute;
+            margin-left: 1%;
+            border-radius: 1rem;
         }
         ul {
+            border-radius: 1rem;
             text-decoration: none !important;
             align-content: center;
             overflow-wrap: break-word;
             list-style-type: none;
-            margin: 0 0 0 5.5%;
-            padding: 0;
+            margin: 0;
+            padding: 0 0 0 6% !important;
             overflow: hidden;
             background-color: $golden;
             width: 100%;
             li {
                 max-width: 300px;
-                min-width: 16%; //16.666666%;
+                min-width: calc(((100%-5rem)*.9)/6); //16.666666%;
                 align-content: center;
                 float: left;
                 height: auto;
@@ -54,37 +76,33 @@ nav {
                     transition: all 0.5s ease;
                 }
                 &.active {
-                    p {
+                    &>p {
                         //margin: 1rem 25%;
-                        margin: 1rem .5em;
+                        margin: 1rem .25em;
                         background-color: $white;
                         a {
                             color: $golden;
                         }
                     }
-                    &:hover p {
+                    &:hover>p,
+                    p:hover {
                         background-color: wheat;
                         transition: all 0.5s ease;
-                    }
-                    &:hover~a #logo {
-                        opacity: 0;
-                        display: none;
-                        transition: all 1s ease;
+                        a {
+                            color: $golden;
+                        }
                     }
                 }
                 &.dropdown {
                     position: sticky;
-                    p a {
-                        pointer-events: none;
-                    }
                     &>div {
                         max-width: 200px;
                         min-width: 16%;
-                        //margin-left: 8em;
                         display: none;
                         &:hover {
                             position: fixed !important;
                             display: block;
+                            transition: all 0.5s ease;
                         }
                         z-index: 1;
                         p {
@@ -92,32 +110,37 @@ nav {
                             padding-bottom: 0;
                         }
                     }
-                    &:hover>div {
+                    &:hover>div,
+                    &.show>div {
                         display: block;
                         position: fixed !important;
+                        transition: all 0.5s ease;
                     }
                 }
             }
         }
         &.collapsing,
         &.show {
+            position: absolute;
+            top: 3rem;
+            left: 0;
             img {
                 opacity: 0;
             }
             ul {
-                margin: 0;
-                li.dropdown {
-                    div {
-                        // background: none;
-                        opacity: 0;
-                        position: fixed !important;
-                        display: none;
-                        &.show {
-                            opacity: 1;
-                            position: relative !important;
-                            display: block;
-                            transition: all 1s ease;
-                        }
+                border-radius: .5rem;
+                width: fit-content;
+                padding: 0;
+                li.dropdown div {
+                    opacity: 0;
+                    position: fixed !important;
+                    display: none;
+                    &.show {
+                        opacity: 1;
+                        top: 0;
+                        position: relative !important;
+                        display: block;
+                        transition: all 1s ease;
                     }
                 }
             }
@@ -133,65 +156,43 @@ header {
     width: 100%;
 }
 
-.about-band {
-    background-color: $golden;
-    padding-top: 100px;
-    padding-bottom: 100px;
-    width: 100%;
-    text-align: center;
-    font-size: 24px;
-    p {
-        padding-left: 15%;
-        padding-right: 15%;
-    }
-}
-
-.best-album {
-    background-color: rgb(88, 0, 0);
-    padding-top: 600px;
-    padding-bottom: 50px;
-    width: 100%;
-    height: 800px;
-    text-align: center;
-    font-size: 18px;
-    color: $white;
-    display: inline-block;
-    div {
-        float: left;
-        margin-top: -550px;
-        margin-left: -25%;
-        h1 {
-            margin-top: 100px;
-            right: 50%;
+content {
+    box-sizing: content-box;
+    .about-band {
+        background-color: $golden;
+        padding-top: 100px;
+        padding-bottom: 100px;
+        width: 100%;
+        text-align: center;
+        font-size: 24px;
+        p {
+            padding-left: 15%;
+            padding-right: 15%;
         }
-        h2 {
-            padding-left: 37.3%;
-            padding-right: 37.3%;
-            a {
+    }
+    .best-album {
+        background-color: rgb(88, 0, 0);
+        margin-left: 0;
+        margin-right: 0;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        width: 100%;
+        font-size: 18px;
+        color: $white;
+        div {
+            float: left;
+            h2 a {
                 margin-left: 10%;
             }
+            img {
+                float: right;
+                width: 100%;
+                min-width: 275px;
+            }
         }
-    }
-    img {
-        float: right;
-        margin-top: -575px;
-        width: 614px;
-        max-width: 24%;
-        /* width: 150%;
-    height: auto;*/
     }
 }
 
 footer {
-    padding-top: 25px;
-    padding-bottom: 35px;
-    height: 2em;
     background-color: rgb(144, 0, 0)!important;
-    &,
-    & p a {
-        width: 100%;
-        text-align: center;
-        font-size: 16px;
-        color: $white;
-    }
 }

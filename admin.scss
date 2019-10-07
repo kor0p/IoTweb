@@ -1,0 +1,26 @@
+content {
+    height: fit-content;
+    form {
+        background-color: rgb(88, 0, 0);
+        color: white;
+        padding: 5em 0 5em 0;
+        .row {
+            padding: 0 5em 0 5em;
+            max-height: 800px;
+            textarea {
+                height: 200px;
+            }
+            .hidden {
+                visibility: hidden;
+                // font-size: 5000%;
+                // width: 20%;
+                // max-width: 200px;
+            }
+            div,
+            img {
+                max-height: 600px;
+                max-width: 600px;
+            }
+        }
+    }
+}
