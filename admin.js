@@ -1,4 +1,4 @@
-var input = document.querySelector('input');
+var input = document.querySelector('#input');
 var preview = document.querySelector('.col-xxl img');
 input.addEventListener('change', function() {
     var file = input.files[0];
