@@ -169,7 +169,7 @@ nav div.collapsing ul li.dropdown div.show, nav div.show ul li.dropdown div.show
 }
 
 header {
-  background-image: url("images/band.jpg");
+  background-image: url("/images/band.jpg");
   background-position: top;
   background-size: cover;
   height: 300px;
