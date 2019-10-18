@@ -221,5 +221,6 @@ content .best-album div img {
 }
 
 footer {
+  margin-bottom: 0;
   background-color: #900000 !important;
 }

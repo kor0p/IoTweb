@@ -1,0 +1,27 @@
+CACHE MANIFEST
+# Версия 1
+
+#*.html
+#*.css
+
+CACHE:
+admin.js
+#index.html
+#images/ad_libitum.jpg
+#images/band.jpg
+#images/logo.png
+#images/nextConcert.png
+#images/preview.png
+#images/telegram.png
+#news/1.jpg
+#news/2.jpg
+#news/3.jpg
+#news/4.jpg
+#news/5.jpg
+#news/6.jpg
+
+NETWORK:
+*
+
+FALLBACK:
+/ /error.html
