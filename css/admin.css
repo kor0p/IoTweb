@@ -25,6 +25,5 @@ content form .row .hidden {
 
 content form .row div,
 content form .row img {
-  max-height: 600px;
   max-width: 600px;
 }

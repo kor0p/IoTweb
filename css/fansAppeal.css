@@ -29,6 +29,6 @@ content .container-fluid .row p {
 }
 
 content .container-fluid .row textarea {
-  height: 250px;
+  min-height: 250px;
   width: 400px;
 }

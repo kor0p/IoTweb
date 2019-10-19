@@ -3,6 +3,7 @@ CACHE MANIFEST
 
 CACHE:
 scripts/admin.js
+scripts/fansAppeal.js
 
 NETWORK:
 *

@@ -1,8 +1,12 @@
-var input = document.querySelector('#input');
-var preview = document.querySelector('.col-xxl img');
-input.addEventListener('change', function() {
-    var file = input.files[0];
-    console.log(file);
-    console.log(window);
-    preview.src = window.URL.createObjectURL(file);
+$('#input').on('change', function() {
+    $('.col-xxl img')[0].src = window.URL.createObjectURL(this.files[0]);
+});
+
+$('form').submit(function() {
+    alert('Done!');
+    $('input')[0].value = null;
+    $('input')[1].value = null;
+    $('textarea')[0].value = null;
+    $('.col-xxl img')[0].src = 'images/preview.png';
+    return false;
 });
