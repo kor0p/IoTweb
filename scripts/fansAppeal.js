@@ -1,7 +1,7 @@
 $('form').submit(function() {
     var now = new Date();
     var appeal = $('textarea')[0];
-    $('content .container-fluid').prepend(`
+    $('content .container-fluid').append(`
     <div class="row justify-content-center">
         <div class="col-md-2">
             <p>Anonymous<br>${now.toLocaleTimeString('uk-UA').slice(0, 5)}<br>${
@@ -13,9 +13,6 @@ $('form').submit(function() {
         </div>
     </div>`);
     alert('Done!');
-    setTimeout(function() {
-        console.log(appeal);
-    });
     appeal.value = null;
     return false;
 });
