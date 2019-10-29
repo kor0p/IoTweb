@@ -1,7 +1,7 @@
 var news = new News();
 
 // set news if not setted
-data_context.getAll(function(res) {
+data_context.getByName('news', res => {
     if (res.news) return;
     data_context.add('news', []);
 });
