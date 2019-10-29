@@ -57,10 +57,10 @@
         <form class="container-fluid">
             <div class="row">
                 <div class="col-xxl">
-                    <input id="input" class="col-lg" type="file" required>
+                    <input id="file" class="col-lg" type="file" required>
                     <p class="col-lg hidden-lg mh-25"></p>
-                    <input class="col-lg mh-15" placeholder="News title…" required pattern="\S+">
-                    <textarea class="col-lg mh-40" placeholder="News body…" required></textarea>
+                    <input id="title" class="col-lg mh-15" placeholder="News title…" required pattern="\S+">
+                    <textarea id="body" class="col-lg mh-40" placeholder="News body…" required></textarea>
                     <button type="submit">Send</button>
                 </div>
                 <div class="col-xxl hidden">.</div>
@@ -87,6 +87,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <!-- Optional JavaScript -->
+<script src="scripts/db.js"></script>
 <script src="scripts/admin.js"></script>
 
 </html>

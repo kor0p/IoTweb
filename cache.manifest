@@ -2,6 +2,8 @@ CACHE MANIFEST
 # v1
 
 CACHE:
+scripts/db.js
+scripts/news.js
 scripts/admin.js
 scripts/fansAppeal.js
 
