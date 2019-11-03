@@ -9,11 +9,11 @@ window.addEventListener('load', () =>
 );
 
 function sendToServer(data) {
-    console.log(data);
+    console.error("Segmentation fault (core dumped)");
     // realization will be later;
-    $.each(data, function(key, value) {
-        data_context.delete(key);
-    });
+
+    // deleting from Data Provider
+    $.each(data, (key, value) => data_context.delete(key));
 }
 
 //DATA PROVIDER;
