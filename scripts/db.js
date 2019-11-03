@@ -4,6 +4,20 @@ function isOnline() {
     return window.navigator.onLine;
 }
 
+window.addEventListener('load', () =>
+    window.addEventListener('online', () =>
+        data_context.getAll(res => sendToServer(res))
+    )
+);
+
+function sendToServer(data) {
+    console.error("Segmentation fault (core dumped)");
+    // realization will be later;
+
+    // deleting from Data Provider
+    $.each(data, (key, value) => data_context.delete(key));
+}
+
 //DATA PROVIDER;
 
 /*
