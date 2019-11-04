@@ -4,11 +4,6 @@ function isOnline() {
     return window.navigator.onLine;
 }
 
-window.addEventListener('load', () =>
-    window.addEventListener('online', () =>
-        data_context.getAll(res => sendToServer(res))
-    )
-);
 
 function sendToServer(data) {
     console.error("Segmentation fault (core dumped)");
