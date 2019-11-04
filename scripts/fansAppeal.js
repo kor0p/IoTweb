@@ -1,18 +1,24 @@
 // add appeals to page if exists
 // else — set key appeals in storage
-data_context.getAll(function(res) {
-    if (isOnline()) return sendToServer(res)
+function setData() {
+    data_context.getAll(function (res) {
 
-    if (res.fansAppeals) {
-        var fansAppeals = JSON.parse(res.fansAppeals);
-        for (var appeal of fansAppeals) {
-            addAppeal(appeal);
+        if (res.fansAppeals) {
+            var fansAppeals = JSON.parse(res.fansAppeals);
+            for (var appeal of fansAppeals) {
+                addAppeal(appeal);
+            }
+        } else {
+            data_context.add('fansAppeals', []);
         }
-    } else {
-        data_context.add('fansAppeals', []);
-    }
-});
+        if (isOnline()) sendToServer(res)
+    });
+}
 
+window.addEventListener('load', () =>
+    window.addEventListener('online', () => setData())
+);
+setData()
 
 $('form').submit(function() {
     var now = new Date(),
@@ -26,8 +32,9 @@ $('form').submit(function() {
         fansAppeal.time = time;
         fansAppeal.date = date;
         data_context.append('fansAppeals', fansAppeal);
+    } else {
+        addAppeal({body, time, date});
     }
-    addAppeal({ body, time, date });
     alert('Done!');
     appeal.value = null;
     return false;
