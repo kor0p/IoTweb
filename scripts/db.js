@@ -43,6 +43,10 @@ LocalStorageDataProvider.prototype.getByName = function(name, callback) {
     return callback(JSON.parse(localStorage[name]) || '');
 };
 
+LocalStorageDataProvider.prototype.getAll = function(callback) {
+    return callback(localStorage);
+};
+
 LocalStorageDataProvider.prototype.delete = function(key) {
     return delete localStorage[key];
 };
@@ -63,14 +67,15 @@ function openIndexedDB() {
     openRequest.onupgradeneeded = function(event) {
         console.log("Upgrading...");
         db = event.target.result;
-        var newsStore = db.createObjectStore("news", { keyPath: "title" });
-        var appealsStore = db.createObjectStore("fansAppeals", { keyPath: "title" });
+        var newsStore = db.createObjectStore("news");
+        var appealsStore = db.createObjectStore("fansAppeals");
     };
 
     openRequest.onsuccess = function(event) {
         console.log("Success!");
         db = event.target.result;
-        init();
+        data_context.add('fansAppeals', new FansAppeal())
+        data_context.getByName('fansAppeals', x=>console.log('lol',x))
     };
 
     openRequest.onerror = function(event) {
@@ -82,13 +87,15 @@ window.addEventListener("load", openIndexedDB, false);
 class IndexedDBDataProvider {
     constructor() {}
     add(key, value) {
-        db
+        if (!db) return;
+        var objectStore = db
             .transaction([key], "readwrite")
             .objectStore(key)
-            .add(value);
+        objectStore.autoIncrement = true
+        objectStore.add(value, 0)
     }
     addKey(key) {
-        db.createObjectStore(key, { keyPath: "title" });
+        db.createObjectStore(key);
     }
     getByName(name, callback) {
         var res = [];
@@ -105,6 +112,16 @@ class IndexedDBDataProvider {
                     return callback(res);
                 }
             };
+    }
+    getAll(callback) {
+        var data = [];
+        if (db) {
+            for (name of openRequest.result.objectStoreNames)
+                this.getByName(name, data.push)
+        } else {
+            console.log(db)
+        }
+        callback(data);
     }
     delete(key) {
         db
@@ -127,3 +144,4 @@ var FansAppeal = function() {};
 FansAppeal.prototype.body = '';
 FansAppeal.prototype.date = '';
 FansAppeal.prototype.time = '';
+
