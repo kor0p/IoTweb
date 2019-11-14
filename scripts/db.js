@@ -1,16 +1,16 @@
-var useLocalStorage = false;
+let useLocalStorage = false;
 
 function isOnline() {
     return window.navigator.onLine;
 }
 
 
-function sendToServer(data) {
+function sendToServer(key, data) {
     console.error("Segmentation fault (core dumped)");
     // realization will be later;
 
     // deleting from Data Provider
-    $.each(data, (key, value) => data_context.delete(key));
+    data_context.delete(key);
 }
 
 //DATA PROVIDER;
@@ -18,33 +18,27 @@ function sendToServer(data) {
 /*
  *   LocalStorage Data Provider
  */
-var LocalStorageDataProvider = function() {};
+class LocalStorageDataProvider {
+    constructor() {}
 
-LocalStorageDataProvider.prototype.add = function(key, value) {
-    localStorage[key] = JSON.stringify(value);
-};
+    add(key) {
+        localStorage[key] = '[]';
+    }
 
-LocalStorageDataProvider.prototype.append = function(key, value) {
-    var arr = JSON.parse(localStorage[key]);
-    arr.push(value);
-    this.add(key, arr);
-};
+    append(key, value) {
+        let arr = JSON.parse(localStorage[key]);
+        arr.push(value);
+        this.add(key, arr);
+    }
 
-LocalStorageDataProvider.prototype.addKey = function(key) {
-    return localStorage.setItem(key, '');
-};
+    getByName(name, callback) {
+        return callback(JSON.parse(localStorage[name]) || '');
+    }
 
-LocalStorageDataProvider.prototype.getByName = function(name, callback) {
-    return callback(JSON.parse(localStorage[name]) || '');
-};
-
-LocalStorageDataProvider.prototype.getAll = function(callback) {
-    return callback(localStorage);
-};
-
-LocalStorageDataProvider.prototype.delete = function(key) {
-    return delete localStorage[key];
-};
+    delete(key) {
+        return delete localStorage[key];
+    }
+}
 
 
 window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
@@ -52,8 +46,8 @@ window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndex
  *   IndexedDB Data Provider
  */
 
-var db;
-var openRequest;
+let db;
+let openRequest;
 
 function openIndexedDB() {
     //open a connection to the datastore
@@ -62,44 +56,57 @@ function openIndexedDB() {
     openRequest.onupgradeneeded = function(event) {
         console.log("Upgrading...");
         db = event.target.result;
-        var newsStore = db.createObjectStore("news");
-        var appealsStore = db.createObjectStore("fansAppeals");
+        db.createObjectStore("news", {keyPath: "id", autoIncrement: true})
+        db.createObjectStore("fansAppeals", {keyPath: "id", autoIncrement: true})
     };
 
     openRequest.onsuccess = function(event) {
         console.log("Success!");
         db = event.target.result;
-        data_context.add('fansAppeals', new FansAppeal())
-        data_context.getByName('fansAppeals', x=>console.log('lol',x))
     };
 
     openRequest.onerror = function(event) {
         console.log("Error");
     };
 }
-window.addEventListener("load", openIndexedDB, false);
+window.addEventListener("load", openIndexedDB);
+// openIndexedDB()
 
 class IndexedDBDataProvider {
     constructor() {}
-    add(key, value) {
+    append(key, value) {
+        // console.log(db)
         if (!db) return;
-        var objectStore = db
+        // let objectStore = db
+        //     .transaction([key], "readwrite")
+        //     .objectStore(key)
+        // objectStore.autoIncrement = true
+        // objectStore.add(value)
+        console.log('add:', key, value)
+        db
             .transaction([key], "readwrite")
             .objectStore(key)
-        objectStore.autoIncrement = true
-        objectStore.add(value, 0)
+            .add(value)
     }
-    addKey(key) {
-        db.createObjectStore(key);
+    add(key) {
+        return true;
+        // db
+        //     .transaction([key], "readwrite")
+        //     .createObjectStore(key,
+        //         {
+        //             keyPath: "id",
+        //             autoIncrement: true
+        //         }
+        //     )
     }
     getByName(name, callback) {
-        var res = [];
+        let res = [];
         db
             .transaction([name], "readwrite")
             .objectStore(name)
             .openCursor()
             .onsuccess = function(event) {
-                var cursor = event.target.result;
+                let cursor = event.target.result;
                 if (cursor) {
                     res.push(cursor.value);
                     cursor.continue();
@@ -108,35 +115,36 @@ class IndexedDBDataProvider {
                 }
             };
     }
-    getAll(callback) {
-        var data = [];
-        if (db) {
-            for (name of openRequest.result.objectStoreNames)
-                this.getByName(name, data.push)
-        } else {
-            console.log(db)
-        }
-        callback(data);
-    }
     delete(key) {
-        db
-            .transaction([key], "readwrite")
-            .deleteObjectStore(key);
+        try {
+            db
+                .transaction([key], "readwrite")
+                .objectStore(key)
+                .clear();
+        } catch (e) {
+            console.log(db, key)
+        }
     }
 }
 
 
 
-//DATA CONTEXT;
-var data_context = useLocalStorage ? new LocalStorageDataProvider() : new IndexedDBDataProvider();
+//DATA CONTEXT
+let data_context = useLocalStorage ? new LocalStorageDataProvider() : new IndexedDBDataProvider();
 
-var News = function() {};
-News.prototype.title = 'Title';
-News.prototype.body = 'Body';
-News.prototype.url = '/images/preview.png';
+class News {
+    constructor() {
+        this.title = 'Title';
+        this.body = 'Body';
+        this.url = '/images/preview.png';
+    }
+}
 
-var FansAppeal = function() {};
-FansAppeal.prototype.body = '';
-FansAppeal.prototype.date = '';
-FansAppeal.prototype.time = '';
+class FansAppeal {
+    constructor() {
+        this.body = '';
+        this.date = '';
+        this.time = '';
+    }
+}
 

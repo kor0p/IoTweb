@@ -1,9 +1,7 @@
 function setData() {
-    data_context.getAll(function (res) {
-        if (!res.news) return;
-
-        var news_list = JSON.parse(res.news);
-        for (var news of news_list) {
+    data_context.getByName('news',function (news_list) {
+        if (!news_list) return;
+        for (let news of news_list) {
             console.log(news);
             $('content .row').prepend(`
             <div class="col-sm">
@@ -15,11 +13,11 @@ function setData() {
             </div>
         `);
         }
-        if (isOnline()) sendToServer(res);
+        if (isOnline()) sendToServer('news', news_list);
     });
 }
 
-window.addEventListener('load', () =>
-    window.addEventListener('online', () => setData())
-);
-setData()
+window.addEventListener('load', () => {
+    window.addEventListener('online', setData);
+    setData();
+});

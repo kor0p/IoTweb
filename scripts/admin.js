@@ -1,14 +1,14 @@
-var news = new News();
+let news = new News();
 
 // set news if not setted
-data_context.getAll(function(res) {
-    if (isOnline()) return sendToServer(res);
-    if (res.news) return;
-    data_context.add('news', []);
+data_context.getByName('news',function(news) {
+    if (isOnline()) return sendToServer('news', news);
+    if (news) return;
+    data_context.add('news');
 });
 
 $('#file').on('change', function() {
-    var file = this.files[0];
+    let file = this.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = e => {
