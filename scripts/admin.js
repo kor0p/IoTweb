@@ -1,11 +1,13 @@
 let news = new News();
 
 // set news if not setted
-data_context.getByName('news',function(news) {
-    if (isOnline()) return sendToServer('news', news);
-    if (news) return;
-    data_context.add('news');
-});
+window.addEventListener('load', () =>
+    window.addEventListener('online', () => setTimeout(
+        data_context.getByName('news', newsList => {
+            if (isOnline()) sendToServer('news', newsList)
+        }), 1000)
+    )
+);
 
 $('#file').on('change', function() {
     let file = this.files[0];
@@ -26,7 +28,8 @@ $('#body').on('change', function() {
 });
 
 $('form').submit(function() {
-    if (!isOnline()) return data_context.append('news', news);
+    if (isOnline()) sendToServer('news', news, false);
+    else data_context.append('news', news);
     news = new News();
     $('#file')[0].value = null;
     $('#title')[0].value = null;

@@ -1,16 +1,30 @@
-let useLocalStorage = false;
+const DOMAIN = 'http://localhost:3000/';
+let useLocalStorage = true;
 
 function isOnline() {
     return window.navigator.onLine;
 }
 
 
-function sendToServer(key, data) {
-    console.error("Segmentation fault (core dumped)");
-    // realization will be later;
-
+function sendToServer(key, data, del=true) {
+    if (data.body) {
+        let req = new XMLHttpRequest();
+        req.open("POST", DOMAIN + key, true)
+        req.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        req.onreadystatechange = console.log;
+        req.send(JSON.stringify(data));
+    }
+    if (!del) return;
     // deleting from Data Provider
     data_context.delete(key);
+}
+
+function getFromServer(key, callback) {
+    let req = new XMLHttpRequest();
+    req.responseType = 'json';
+    req.open('GET', DOMAIN+key, true);
+    req.onload  = () => req.status === 200 ? callback(req.response) : console.log(req.response)
+    req.send(null);
 }
 
 //DATA PROVIDER;
@@ -21,22 +35,18 @@ function sendToServer(key, data) {
 class LocalStorageDataProvider {
     constructor() {}
 
-    add(key) {
-        localStorage[key] = '[]';
-    }
-
     append(key, value) {
         let arr = JSON.parse(localStorage[key]);
         arr.push(value);
-        this.add(key, arr);
+        localStorage[key] = JSON.stringify(arr);
     }
 
     getByName(name, callback) {
-        return callback(JSON.parse(localStorage[name]) || '');
+        return callback(JSON.parse(localStorage[name] || '[]'));
     }
 
     delete(key) {
-        return delete localStorage[key];
+        localStorage[key] = '[]';
     }
 }
 
@@ -56,8 +66,12 @@ function openIndexedDB() {
     openRequest.onupgradeneeded = function(event) {
         console.log("Upgrading...");
         db = event.target.result;
-        db.createObjectStore("news", {keyPath: "id", autoIncrement: true})
-        db.createObjectStore("fansAppeals", {keyPath: "id", autoIncrement: true})
+        if (useLocalStorage) {
+            localStorage["news"] = localStorage["fansAppeals"] = '[]';
+        } else {
+            db.createObjectStore("news", {keyPath: "id", autoIncrement: true});
+            db.createObjectStore("fansAppeals", {keyPath: "id", autoIncrement: true});
+        }
     };
 
     openRequest.onsuccess = function(event) {
@@ -87,17 +101,6 @@ class IndexedDBDataProvider {
             .transaction([key], "readwrite")
             .objectStore(key)
             .add(value)
-    }
-    add(key) {
-        return true;
-        // db
-        //     .transaction([key], "readwrite")
-        //     .createObjectStore(key,
-        //         {
-        //             keyPath: "id",
-        //             autoIncrement: true
-        //         }
-        //     )
     }
     getByName(name, callback) {
         let res = [];
@@ -133,18 +136,18 @@ class IndexedDBDataProvider {
 let data_context = useLocalStorage ? new LocalStorageDataProvider() : new IndexedDBDataProvider();
 
 class News {
-    constructor() {
-        this.title = 'Title';
-        this.body = 'Body';
-        this.url = '/images/preview.png';
+    constructor(title, body, url) {
+        this.title = title || 'Title';
+        this.body = body || 'Body';
+        this.url = url || '/images/preview.png';
     }
 }
 
 class FansAppeal {
-    constructor() {
-        this.body = '';
-        this.date = '';
-        this.time = '';
+    constructor(body, date, time) {
+        this.body = body || '';
+        this.date = date || '';
+        this.time = time || '';
     }
 }
 

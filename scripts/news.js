@@ -1,9 +1,21 @@
 function setData() {
-    data_context.getByName('news',function (news_list) {
-        if (!news_list) return;
-        for (let news of news_list) {
-            console.log(news);
-            $('content .row').prepend(`
+    data_context.getByName('news',function (newsList) {
+        if (!newsList) return;
+        setNews(newsList);
+        if (!isOnline()) return;
+        sendToServer('news', newsList);
+        getFromServer('news', setNews)
+    });
+}
+
+window.addEventListener('load', () => {
+    window.addEventListener('online', setData);
+    setTimeout(setData, 1000);
+});
+
+function setNews(newsList) {
+    newsList.map( news =>
+        $('content .row').prepend(`
             <div class="col-sm">
                 <div>
                     <img src="${news.url}">
@@ -11,13 +23,6 @@ function setData() {
                 <h3>${news.title}</h3>
                 <p>${news.body}</p>
             </div>
-        `);
-        }
-        if (isOnline()) sendToServer('news', news_list);
-    });
+        `)
+    )
 }
-
-window.addEventListener('load', () => {
-    window.addEventListener('online', setData);
-    setData();
-});

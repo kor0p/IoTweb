@@ -2,19 +2,17 @@
 // else — set key appeals in storage
 function setData() {
     data_context.getByName('fansAppeals',function (fansAppeals) {
-        if (fansAppeals) {
-            for (let appeal of fansAppeals) {
-                addAppeal(appeal);
-            }
-        } else {
-            data_context.add('fansAppeals');
-        }
-        if (isOnline()) sendToServer('fansAppeals', fansAppeals)
+        if (fansAppeals) fansAppeals.map(addAppeal);
+        if (isOnline()) fansAppeals.map( appeal => sendToServer('fansAppeals', appeal));
     });
 }
 window.addEventListener('load', () => {
     window.addEventListener('online', setData);
     setTimeout(setData, 1000)
+    if (isOnline())
+        getFromServer('fansAppeals',
+            appeals => appeals.map(addAppeal)
+        );
 });
 
 $('form').submit(function() {
@@ -23,14 +21,12 @@ $('form').submit(function() {
         date = now.toLocaleDateString('uk-UA').slice(0, -4) + (now.getFullYear().toString().slice(2));
     let appeal = $('textarea')[0];
     let body = appeal.value;
+    let fansAppeal = new FansAppeal(body, time, date);
     if (!isOnline()) {
-        let fansAppeal = new FansAppeal();
-        fansAppeal.body = body;
-        fansAppeal.time = time;
-        fansAppeal.date = date;
         data_context.append('fansAppeals', fansAppeal);
     } else {
-        addAppeal({body, time, date});
+        addAppeal(fansAppeal);
+        sendToServer('fansAppeals', fansAppeal, false);
     }
     alert('Done!');
     appeal.value = null;
