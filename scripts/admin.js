@@ -1,11 +1,14 @@
 let news = new News();
 
 // set news if not setted
-window.addEventListener('load', () => setTimeout(
-    data_context.getByName('news', function (news) {
-        if (isOnline()) return sendToServer('news', news);
-    }), 1000)
+window.addEventListener('load', () =>
+    window.addEventListener('online', () => setTimeout(
+        data_context.getByName('news', function (news) {
+            if (isOnline()) return sendToServer('news', news);
+        }), 1000)
+    )
 );
+
 $('#file').on('change', function() {
     let file = this.files[0];
     const reader = new FileReader();
