@@ -4,7 +4,6 @@ let news = new News();
 data_context.getByName('news',function(news) {
     if (isOnline()) return sendToServer('news', news);
     if (news) return;
-    data_context.add('news');
 });
 
 $('#file').on('change', function() {

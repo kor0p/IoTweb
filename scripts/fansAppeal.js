@@ -6,8 +6,6 @@ function setData() {
             for (let appeal of fansAppeals) {
                 addAppeal(appeal);
             }
-        } else {
-            data_context.add('fansAppeals');
         }
         if (isOnline()) sendToServer('fansAppeals', fansAppeals)
     });

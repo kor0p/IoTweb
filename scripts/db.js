@@ -1,4 +1,4 @@
-let useLocalStorage = false;
+let useLocalStorage = true;
 
 function isOnline() {
     return window.navigator.onLine;
@@ -20,10 +20,6 @@ function sendToServer(key, data) {
  */
 class LocalStorageDataProvider {
     constructor() {}
-
-    add(key) {
-        localStorage[key] = '[]';
-    }
 
     append(key, value) {
         let arr = JSON.parse(localStorage[key]);
@@ -56,8 +52,12 @@ function openIndexedDB() {
     openRequest.onupgradeneeded = function(event) {
         console.log("Upgrading...");
         db = event.target.result;
-        db.createObjectStore("news", {keyPath: "id", autoIncrement: true})
-        db.createObjectStore("fansAppeals", {keyPath: "id", autoIncrement: true})
+        if (useLocalStorage) {
+            localStorage["news"] = localStorage["fansAppeals"] = '[]';
+        } else {
+            db.createObjectStore("news", {keyPath: "id", autoIncrement: true});
+            db.createObjectStore("fansAppeals", {keyPath: "id", autoIncrement: true});
+        }
     };
 
     openRequest.onsuccess = function(event) {
@@ -87,17 +87,6 @@ class IndexedDBDataProvider {
             .transaction([key], "readwrite")
             .objectStore(key)
             .add(value)
-    }
-    add(key) {
-        return true;
-        // db
-        //     .transaction([key], "readwrite")
-        //     .createObjectStore(key,
-        //         {
-        //             keyPath: "id",
-        //             autoIncrement: true
-        //         }
-        //     )
     }
     getByName(name, callback) {
         let res = [];
