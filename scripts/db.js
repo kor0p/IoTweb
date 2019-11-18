@@ -1,4 +1,4 @@
-let useLocalStorage = false;
+let useLocalStorage = true;
 
 function isOnline() {
     return window.navigator.onLine;
@@ -32,7 +32,7 @@ class LocalStorageDataProvider {
     }
 
     delete(key) {
-        return delete localStorage[key];
+        localStorage[key] = '[]';
     }
 }
 
