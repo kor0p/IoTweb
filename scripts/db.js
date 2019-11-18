@@ -24,11 +24,11 @@ class LocalStorageDataProvider {
     append(key, value) {
         let arr = JSON.parse(localStorage[key]);
         arr.push(value);
-        this.add(key, arr);
+        localStorage[key] = JSON.stringify(arr);
     }
 
     getByName(name, callback) {
-        return callback(JSON.parse(localStorage[name]) || '');
+        return callback(JSON.parse(localStorage[name] || '[]'));
     }
 
     delete(key) {
