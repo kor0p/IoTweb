@@ -1,6 +1,5 @@
 let news = new News();
 
-// set news if not setted
 window.addEventListener('load', () =>
     window.addEventListener('online', () => setTimeout(
         data_context.getByName('news', newsList => {

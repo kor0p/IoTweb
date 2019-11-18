@@ -5,7 +5,6 @@ const app = express();
 const port = 3000;
 
 let fansAppeals = [
-    {body:'KEK',date:'11.09.01',time:'08:46'},
     {body:'Lorem ipsum dolor sit amet, consectetur adipising elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',date:'09.09.19',time:'12:34'},
     {body:'Lorem ipsum dolor sit amet, consectetur adipising elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',date:'09.09.19',time:'22:22'},
 ];
@@ -16,7 +15,6 @@ let news = [
     {url:'news/3.jpg',title:'Tertsia with the Musical Etudes Concert in May in your city!',body:'Concerts of Pikkardiyska tertsia in May will cover the following cities: Vinnytsia, Zhytomyr, Ivano-Frankivsk, Ternopil, Kamianets-Podilskyi, Chervonograd. These will be musical evenings filled with light, kindness, spring, love! They carry all this in their songs piccardians! The schedule and details for each city are in the News.'},
     {url:'news/2.jpg',title:'"Tertsia" meets with concerts in Vienna and Munich',body:'At the end of November - early December, the vocal formation "Pikkardiyska tertsia" will perform in Vienna (November 29) and in Munich (December 1). The details are on the official poster of these tours.'},
     {url:'news/1.jpg',title:'August 25, "Pikkardiyska tertsia" with a solo concert in Odessa',body:'At the time of Ukraine\'s Independence Day, the piccardians will come to Odessa for a solo concert. The performance will take place at the Musical Comedy Theater. Starts at 19:00. Tickets are on sale now - the link in this News.'},
-    {title:'KEK',body:'LOL',url:'/images/preview.png'},
 ];
 
 app.use(bodyParser.urlencoded({
@@ -30,7 +28,10 @@ app.use( (req, res, next) => {
     next();
 });
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }))
+// app.use(express.json({limit: '50mb'}));
+// app.use(express.urlencoded({limit: '50mb'}));
 
 app.get('/me', (req, res) => res.send(true));
 app.get('/news', (req, res) => res.send(news));
@@ -46,6 +47,6 @@ app.post('/fansAppeals', (req, res) => {
 });
 
 app.listen(port, err => {
-    if (err) return console.log('something bad happened', err);
+    if (err) return console.log('error ¯\\_(ツ)_/¯ :', err);
     console.log('server is listening on ' + port)
 });

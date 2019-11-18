@@ -1,5 +1,6 @@
 const DOMAIN = 'http://localhost:3000/';
-let useLocalStorage = true;
+// let useLocalStorage = true;
+let useLocalStorage = false;
 
 function isOnline() {
     return window.navigator.onLine;
@@ -129,8 +130,6 @@ class IndexedDBDataProvider {
         }
     }
 }
-
-
 
 //DATA CONTEXT
 let data_context = useLocalStorage ? new LocalStorageDataProvider() : new IndexedDBDataProvider();
