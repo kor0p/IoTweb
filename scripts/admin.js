@@ -1,11 +1,11 @@
 let news = new News();
 
 // set news if not setted
-data_context.getByName('news',function(news) {
-    if (isOnline()) return sendToServer('news', news);
-    if (news) return;
-});
-
+window.addEventListener('load', () => setTimeout(
+    data_context.getByName('news', function (news) {
+        if (isOnline()) return sendToServer('news', news);
+    }), 1000)
+);
 $('#file').on('change', function() {
     let file = this.files[0];
     const reader = new FileReader();
@@ -25,7 +25,7 @@ $('#body').on('change', function() {
 });
 
 $('form').submit(function() {
-    if (!isOnline()) return data_context.append('news', news);
+    if (!isOnline()) data_context.append('news', news);
     news = new News();
     $('#file')[0].value = null;
     $('#title')[0].value = null;

@@ -1,4 +1,4 @@
-let useLocalStorage = true;
+let useLocalStorage = false;
 
 function isOnline() {
     return window.navigator.onLine;
