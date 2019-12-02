@@ -8,11 +8,13 @@ function setData() {
 }
 window.addEventListener('load', () => {
     window.addEventListener('online', setData);
-    setTimeout(setData, 1000)
-    if (isOnline())
-        getFromServer('fansAppeals',
-            appeals => appeals.map(addAppeal)
-        );
+    setTimeout(() => {
+        setData();
+        if (isOnline())
+            getFromServer('fansAppeals',
+                appeals => appeals.map(addAppeal)
+            );
+    }, 1000);
 });
 
 $('form').submit(function() {
