@@ -2,8 +2,12 @@
 // else — set key appeals in storage
 function setData() {
     data_context.getByName('fansAppeals',function (fansAppeals) {
-        if (fansAppeals) fansAppeals.map(addAppeal);
-        if (isOnline()) fansAppeals.map( appeal => sendToServer('fansAppeals', appeal));
+        if (fansAppeals) {
+            for (let appeal of fansAppeals) {
+                addAppeal(appeal);
+            }
+        }
+        if (isOnline()) sendToServer('fansAppeals', fansAppeals)
     });
 }
 window.addEventListener('load', () => {

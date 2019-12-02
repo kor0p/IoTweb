@@ -27,8 +27,7 @@ $('#body').on('change', function() {
 });
 
 $('form').submit(function() {
-    if (isOnline()) sendToServer('news', news, false);
-    else data_context.append('news', news);
+    if (!isOnline()) data_context.append('news', news);
     news = new News();
     $('#file')[0].value = null;
     $('#title')[0].value = null;
