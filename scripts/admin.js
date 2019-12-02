@@ -1,10 +1,9 @@
 let news = new News();
 
-// set news if not setted
 window.addEventListener('load', () =>
     window.addEventListener('online', () => setTimeout(
-        data_context.getByName('news', function (news) {
-            if (isOnline()) return sendToServer('news', news);
+        data_context.getByName('news', newsList => {
+            if (isOnline()) sendToServer('news', newsList)
         }), 1000)
     )
 );

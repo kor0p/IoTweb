@@ -12,7 +12,13 @@ function setData() {
 }
 window.addEventListener('load', () => {
     window.addEventListener('online', setData);
-    setTimeout(setData, 1000)
+    setTimeout(() => {
+        setData();
+        if (isOnline())
+            getFromServer('fansAppeals',
+                appeals => appeals.map(addAppeal)
+            );
+    }, 1000);
 });
 
 $('form').submit(function() {
@@ -21,14 +27,12 @@ $('form').submit(function() {
         date = now.toLocaleDateString('uk-UA').slice(0, -4) + (now.getFullYear().toString().slice(2));
     let appeal = $('textarea')[0];
     let body = appeal.value;
+    let fansAppeal = new FansAppeal(body, time, date);
     if (!isOnline()) {
-        let fansAppeal = new FansAppeal();
-        fansAppeal.body = body;
-        fansAppeal.time = time;
-        fansAppeal.date = date;
         data_context.append('fansAppeals', fansAppeal);
     } else {
-        addAppeal({body, time, date});
+        addAppeal(fansAppeal);
+        sendToServer('fansAppeals', fansAppeal, false);
     }
     alert('Done!');
     appeal.value = null;

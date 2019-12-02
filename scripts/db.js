@@ -1,16 +1,31 @@
-let useLocalStorage = true;
+const DOMAIN = 'http://localhost:3000/';
+// let useLocalStorage = true;
+let useLocalStorage = false;
 
 function isOnline() {
     return window.navigator.onLine;
 }
 
 
-function sendToServer(key, data) {
-    console.error("Segmentation fault (core dumped)");
-    // realization will be later;
-
+function sendToServer(key, data, del=true) {
+    if (data.body) {
+        let req = new XMLHttpRequest();
+        req.open("POST", DOMAIN + key, true)
+        req.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        req.onreadystatechange = console.log;
+        req.send(JSON.stringify(data));
+    }
+    if (!del) return;
     // deleting from Data Provider
     data_context.delete(key);
+}
+
+function getFromServer(key, callback) {
+    let req = new XMLHttpRequest();
+    req.responseType = 'json';
+    req.open('GET', DOMAIN+key, true);
+    req.onload  = () => req.status === 200 ? callback(req.response) : console.log(req.response)
+    req.send(null);
 }
 
 //DATA PROVIDER;
@@ -116,24 +131,22 @@ class IndexedDBDataProvider {
     }
 }
 
-
-
 //DATA CONTEXT
 let data_context = useLocalStorage ? new LocalStorageDataProvider() : new IndexedDBDataProvider();
 
 class News {
-    constructor() {
-        this.title = 'Title';
-        this.body = 'Body';
-        this.url = '/images/preview.png';
+    constructor(title, body, url) {
+        this.title = title || 'Title';
+        this.body = body || 'Body';
+        this.url = url || '/images/preview.png';
     }
 }
 
 class FansAppeal {
-    constructor() {
-        this.body = '';
-        this.date = '';
-        this.time = '';
+    constructor(body, date, time) {
+        this.body = body || '';
+        this.date = date || '';
+        this.time = time || '';
     }
 }
 
