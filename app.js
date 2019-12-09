@@ -26,9 +26,7 @@ app.use( (req, res, next) => {
 });
 
 app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }))
-// app.use(express.json({limit: '50mb'}));
-// app.use(express.urlencoded({limit: '50mb'}));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }));
 
 app.get('/me', (req, res) => res.send(true));
 app.get('/:dbname',
@@ -38,20 +36,12 @@ app.get('/:dbname',
         )
     )
 );
-app.get('/fansAppeals',
-    (req, res) => DB('fansAppeals',
-        fansAppeals => fansAppeals.find({}).toArray(
-            (err, r) => res.send(r)
-        )
-    )
+app.post('/:dbname', (req, res) =>
+    DB(req.params.dbname,
+            news => news.insertOne(req.body)
+    ).then(res.send)
 );
 
-app.post('/news', (req, res) =>
-    DB('news', news => news.insertOne(req.body)).then(res.send)
-);
-app.post('/fansAppeals', (req, res) =>
-    DB('fansAppeals', fansAppeals => fansAppeals.insertOne(req.body)).then(res.send)
-);
 
 const server = app.listen(port, err => {
     if (err) return console.log('error ¯\\_(ツ)_/¯ :', err);
